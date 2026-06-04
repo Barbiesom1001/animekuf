@@ -145,26 +145,30 @@ function BasementPage() {
           onClick={() => setActive(null)}
         >
           <div
-            className="bg-card border border-border rounded-3xl max-w-2xl w-full max-h-[85vh] overflow-y-auto p-6"
+            className="relative bg-card border border-border rounded-3xl max-w-2xl w-full max-h-[85vh] overflow-y-auto"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="flex items-start gap-3">
-              <span className="text-xs px-2 py-1 rounded-full bg-destructive/20 text-destructive font-bold">
+            <button
+              type="button"
+              onClick={() => setActive(null)}
+              aria-label="ปิด"
+              className="absolute top-3 right-3 z-10 w-9 h-9 rounded-full bg-background/90 border border-border text-foreground/70 hover:text-foreground hover:bg-background flex items-center justify-center text-lg shadow"
+            >
+              ✕
+            </button>
+            <div className="h-56 relative overflow-hidden rounded-t-3xl bg-muted">
+              <img src={active.image} alt={active.title} className="absolute inset-0 w-full h-full object-cover" />
+              <div className="absolute inset-0 bg-gradient-to-t from-card via-card/60 to-transparent" />
+              <span className="absolute bottom-3 left-4 text-xs px-2 py-1 rounded-full bg-destructive/30 text-destructive font-bold border border-destructive/40 backdrop-blur">
                 {active.tag}
               </span>
-              <button
-                type="button"
-                onClick={() => setActive(null)}
-                className="ml-auto text-foreground/60 hover:text-foreground text-xl leading-none"
-                aria-label="ปิด"
-              >
-                ✕
-              </button>
             </div>
-            <h2 className="text-2xl font-bold mt-3 text-foreground">{active.title}</h2>
-            <p className="mt-4 text-foreground/85 leading-relaxed whitespace-pre-wrap">
-              {active.content}
-            </p>
+            <div className="p-6">
+              <h2 className="text-2xl font-bold text-foreground">{active.title}</h2>
+              <p className="mt-4 text-foreground/85 leading-relaxed whitespace-pre-wrap">
+                {active.content}
+              </p>
+            </div>
           </div>
         </div>
       )}
