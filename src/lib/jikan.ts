@@ -27,6 +27,18 @@ export async function getTopAnime(): Promise<Anime[]> {
 }
 
 export async function getByGenre(genreId: number): Promise<Anime[]> {
+  // -1 = curated Hunter/Gate & Dungeon list (ประตูมิติ + ฮันเตอร์เคลียร์ดันเจี้ยน)
+  if (genreId === -1) {
+    const ids = [52299, 34902, 37976, 37430, 48569, 31043, 36474, 39468];
+    const results = await Promise.all(
+      ids.map((id) =>
+        fetchJSON<{ data: Anime }>(`${BASE}/anime/${id}`)
+          .then((r) => r.data)
+          .catch(() => null)
+      )
+    );
+    return results.filter((a): a is Anime => !!a);
+  }
   const j = await fetchJSON<{ data: Anime[] }>(
     `${BASE}/anime?genres=${genreId}&order_by=score&sort=desc&limit=24&sfw=true`
   );
