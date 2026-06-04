@@ -13,7 +13,6 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Navbar } from "../components/Navbar";
 import { KufChat } from "../components/KufChat";
-import pastelBg from "../assets/pastel-bg.png.asset.json";
 
 function NotFoundComponent() {
   return (
@@ -81,8 +80,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "AnimeKuf — ศูนย์รวมอนิเมะกับน้องคัฟ" },
-      { name: "description", content: "แพลตฟอร์มแนะนำอนิเมะภาษาไทยกับน้องคัฟ ค้นหา เช็คตารางฉาย และวิเคราะห์สปอยล์" },
+      { name: "description", content: "แพลตฟอร์มแนะนำอนิเมะกับน้องคัฟ ค้นหา เช็คตารางฉาย และวิเคราะห์สปอยล์" },
       { property: "og:type", content: "website" },
+      { property: "og:title", content: "AnimeKuf — ศูนย์รวมอนิเมะกับน้องคัฟ" },
+      { name: "twitter:title", content: "AnimeKuf — ศูนย์รวมอนิเมะกับน้องคัฟ" },
+      { property: "og:description", content: "แพลตฟอร์มแนะนำอนิเมะกับน้องคัฟ ค้นหา เช็คตารางฉาย และวิเคราะห์สปอยล์" },
+      { name: "twitter:description", content: "แพลตฟอร์มแนะนำอนิเมะกับน้องคัฟ ค้นหา เช็คตารางฉาย และวิเคราะห์สปอยล์" },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/b6d3fed3-5dbd-48d6-a0f0-26d22d8b3f84/id-preview-872a3455--182022a7-06dc-4969-bd99-77d1d2dc089d.lovable.app-1780562204450.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/b6d3fed3-5dbd-48d6-a0f0-26d22d8b3f84/id-preview-872a3455--182022a7-06dc-4969-bd99-77d1d2dc089d.lovable.app-1780562204450.png" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -119,10 +125,7 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <div
-        className="min-h-screen flex flex-col pastel-bg"
-        style={{ ["--pastel-bg-url" as string]: `url(${pastelBg.url})` }}
-      >
+      <div className="min-h-screen flex flex-col">
         <Navbar />
         <main className="flex-1">
           <Outlet />
