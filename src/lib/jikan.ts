@@ -106,7 +106,7 @@ export const GENRES = [
   { id: 10, name: "แฟนตาซี", emoji: "🪄" },
   { id: 22, name: "โรแมนซ์", emoji: "💖" },
   { id: 24, name: "ไซไฟ", emoji: "🚀" },
-  { id: 31, name: "ฮันเตอร์", emoji: "🏹" },
+  { id: -1, name: "เกต/ดันเจี้ยน", emoji: "🌀" },
 ] as const;
 
 export function statusToThai(s?: string | null): string {
