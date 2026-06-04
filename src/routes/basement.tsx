@@ -22,27 +22,35 @@ interface Post {
 const POSTS: Post[] = [
   {
     id: 1,
-    title: "ทฤษฎีตอนจบ Attack on Titan — เอเรนเลือกถูกแล้วจริงหรือ?",
-    excerpt: "เจาะลึกแรงจูงใจของเอเรน เยเกอร์ และคำถามที่ยังไม่ได้รับคำตอบ...",
+    title: "Attack on Titan — ทำไมเอเรนถึงต้อง 'รัมเบิล' โลก",
+    excerpt: "วิเคราะห์การตัดสินใจของเอเรน เยเกอร์ ในตอนจบ และทำไมมิกาสะถึงคือกุญแจสำคัญ",
     tag: "ทฤษฎี",
     content:
-      "เอเรนเลือกเดินบน 'เส้นทางที่หลีกเลี่ยงไม่ได้' หลังเห็นความทรงจำในอนาคต การปลดปล่อยไททันเป็นการบีบให้โลกรวมตัวต่อต้านพาราดี เพื่อให้เพื่อนของเขากลายเป็นวีรบุรุษ แต่คำถามคือ — ถ้าเขาเลือกไม่ทำ จะมีทางออกอื่นจริงไหม? ทฤษฎีบอกว่าพลังของยมีร์ผูกกับเจตจำนงของเอเรนทั้งหมด การทำลายล้าง 80% ของโลกอาจเป็นทางเลือกที่ 'น้อยที่สุด' ที่เขาเห็นในไทม์ไลน์ทั้งหมดคัฟ",
+      "หลังเอเรนได้พลังไททันบรรพชนและเห็นความทรงจำตลอดเส้นเวลา เขามองเห็นว่าโลกภายนอกพร้อมจะกวาดล้างชาวเอลเดียให้สิ้นซาก ทางเลือกของเขาคือ 'รัมเบิล' ปลดปล่อยไททันยักษ์เหยียบโลก 80% เพื่อทำให้เพื่อนของเขากลายเป็นวีรบุรุษที่หยุดเขาได้\n\nจุดสำคัญที่หลายคนมองข้ามคือ — เอเรนรู้มาตลอดว่า 'มิกาสะ' จะเป็นคนปลิดชีพเขา เพราะเฉพาะคนที่รักเขาสุดหัวใจเท่านั้นที่จะทำลายพลังยมีร์ที่ผูกอยู่กับความเจ็บปวด 2,000 ปีของยมีร์ ฟริตซ์ได้ ตอนจบจึงไม่ใช่โศกนาฏกรรม แต่คือ 'พิธีปลดปล่อย' ที่เอเรนวางแผนไว้ตั้งแต่ต้นคัฟ",
   },
   {
     id: 2,
-    title: "ไทม์ไลน์ Demon Slayer ที่หลายคนมองข้าม",
-    excerpt: "เรียงลำดับเหตุการณ์ตั้งแต่ยุคเฮอันถึงไทโช พร้อมจุดเชื่อมโยงสำคัญ...",
+    title: "Demon Slayer — ความลับของลมหายใจพระอาทิตย์",
+    excerpt: "ทำไมยอริอิจิถึงเกือบฆ่ามุซันสำเร็จ และเนซึโกะข้ามขีดจำกัดของอสูรได้อย่างไร",
     tag: "วิเคราะห์",
     content:
-      "เรื่องเริ่มยุคเฮอัน เมื่อมุซันได้รับการรักษาจากหมอจนกลายเป็นอมตะแต่กลัวแสงอาทิตย์ — ยอริอิจิ ผู้ใช้ลมหายใจพระอาทิตย์คนแรกเกือบฆ่ามุซันได้ แต่พลาด ทำให้มุซันแตกออกเป็น 7 ส่วนกลายเป็น 'จันทราตอนบน' ต้นกำเนิด เนซึโกะรอดเพราะเลือดมุซันที่ฉีดให้เธอ 'ผิดพลาด' ทำให้เธอเอาชนะความหิวโหยและเดินทะลุแสงแดดได้คัฟ",
+      "ยุคเฮอัน — ยอริอิจิ ทสึกิคุนิ คือมนุษย์คนเดียวที่ใช้ 'ลมหายใจพระอาทิตย์' ดั้งเดิม เขาเกือบฆ่ามุซันสำเร็จในการเจอกันครั้งแรก แต่ร่างของมุซันแยกออกเป็น 1,800 ชิ้นเพื่อหนีตาย\n\nลมหายใจอื่นทั้งหมด (น้ำ ไฟ สายฟ้า ลม หิน) คือ 'เวอร์ชันที่อ่อนลง' ของลมหายใจพระอาทิตย์ เพราะไม่มีใครเลียนแบบยอริอิจิได้\n\nส่วนเนซึโกะ — เธอเอาชนะแสงอาทิตย์ได้เพราะมุซันฉีดเลือดให้เธอในปริมาณที่ทำให้ 'วิวัฒนาการ' ไปอีกขั้น เป้าหมายของมุซันมาตลอด คือสร้างอสูรที่กินแดดได้ ดังนั้นการล่าเนซึโกะของเขาในเรื่อง คือการพยายามดูดกลืนผลงานที่ตัวเองทำพลาดให้เป็นของตัวเองคัฟ",
   },
   {
     id: 3,
-    title: "Jujutsu Kaisen — ความจริงเรื่องคำสาปและพลังลับของโกโจ",
-    excerpt: "ทำไมโกโจถึงแข็งแกร่งขนาดนั้น และอะไรคือจุดอ่อนที่ซ่อนอยู่...",
+    title: "Jujutsu Kaisen — โกโจ vs ซุคุนะ ใครแข็งแกร่งกว่ากันจริง?",
+    excerpt: "เจาะลึก Six Eyes, Limitless และเหตุผลที่โกโจพ่ายแพ้ในศึกชินจูกุ",
     tag: "สปอยล์ยับ",
     content:
-      "โกโจมีทั้ง 'Limitless' และ 'Six Eyes' พร้อมกัน — ครั้งแรกในรอบหลายร้อยปี Six Eyes ทำให้เขาใช้พลังโดยแทบไม่เปลืองพลังคำสาป ส่วน Limitless ทำให้ระยะห่างระหว่างเขากับคู่ต่อสู้ไม่มีวันถึง 0 จุดอ่อนคือ — ถ้าเจอคู่ต่อสู้ที่บิดเบือนกฎพื้นที่ระดับ Domain Expansion ได้สมบูรณ์กว่า โกโจอาจเสียเปรียบ ซึ่งคือสิ่งที่ซุคุนะใช้ในศึกสุดท้ายคัฟ",
+      "โกโจ ซาโตรุ มีทั้ง 'Six Eyes' (ดวงตาหกแฉก) และเทคนิคสายเลือด 'Limitless' พร้อมกัน ซึ่งเกิดขึ้นครั้งแรกในรอบ 400 ปี Six Eyes ทำให้เขามองเห็นพลังคำสาประดับโมเลกุล จึงใช้ Limitless แบบประหยัดพลังได้\n\nในศึกชินจูกุ ซุคุนะที่สิงร่างเมงุมิ ใช้ Domain Expansion 'Malevolent Shrine' ที่ไม่ต้องสร้างกำแพง — ตัดทุกอย่างในรัศมี 200 เมตรอัตโนมัติ ขณะที่ Domain ของโกโจ 'Unlimited Void' ยัดข้อมูลอนันต์เข้าสมองคู่ต่อสู้\n\nจุดแพ้ของโกโจคือ — เขาประมาท 'เทคนิคสายเลือดสิบเงา' ของเมงุมิที่ซุคุนะปลดล็อกได้สมบูรณ์ ทำให้โดน 'มะฮึรากะ' โจมตี และครั้งที่สองที่ใช้ไม่ได้ผล สุดท้ายโกโจถูกตัดครึ่งในสภาพยิ้มคัฟ",
+  },
+  {
+    id: 4,
+    title: "Frieren — ทำไม 'ฮิมเมล' ถึงเปลี่ยนใจฟรีเร็นได้",
+    excerpt: "วิเคราะห์ธีมเวลา ความตาย และความรักที่ไม่ทันได้พูดออกมา",
+    tag: "วิเคราะห์",
+    content:
+      "ฟรีเร็น เป็นเอลฟ์อายุพันกว่าปี สำหรับเธอ 10 ปีของการผจญภัยกับฮิมเมลคือแค่ 'หนึ่งฤดูใบไม้ผลิ' เธอไม่ได้พยายามจดจำเพื่อนมนุษย์ เพราะรู้ว่าพวกเขาจะตายเร็ว\n\nแต่หลังฮิมเมลตาย ฟรีเร็นเริ่มออกเดินทางอีกครั้งเพื่อ 'ทำความเข้าใจมนุษย์' — สิ่งที่เธอไม่เคยสนใจในตอนที่ฮิมเมลยังอยู่ ทุกตอนคือบทเรียนเล็กๆ ที่ฮิมเมลเคยพยายามสอน แต่เธอเพิ่งเก็ตหลังเขาจากไป\n\nธีมแท้จริงของเรื่องคือ — 'ความเสียดายไม่ใช่ความเจ็บ แต่คือแรงผลักให้เราเข้าใจคนที่จากไป' ตอนจบที่ฟรีเร็นยอมรับว่า 'อยากเจอฮิมเมลอีกครั้ง' คือจุดที่เธอกลายเป็นมนุษย์มากกว่าเอลฟ์คัฟ",
   },
 ];
 
@@ -80,23 +88,44 @@ function BasementPage() {
   }
 
   return (
-    <div className="max-w-5xl mx-auto px-4 py-10">
-      <h1 className="text-3xl font-bold text-foreground">🕯️ ห้องใต้ดิน</h1>
-      <p className="text-foreground/70 mt-1">บทความวิเคราะห์ ทฤษฎี และสปอยล์เจาะลึก</p>
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
+    <div className="max-w-6xl mx-auto px-4 py-10">
+      <div className="flex items-end justify-between flex-wrap gap-4 mb-8">
+        <div>
+          <h1 className="text-4xl font-bold text-foreground flex items-center gap-2">
+            <span>🕯️</span> ห้องใต้ดิน
+          </h1>
+          <p className="text-foreground/70 mt-2">บทความวิเคราะห์ ทฤษฎี และสปอยล์เจาะลึกแบบจัดเต็ม</p>
+        </div>
+        <span className="text-xs px-3 py-1.5 rounded-full bg-destructive/20 text-destructive font-bold border border-destructive/30">
+          🚫 SPOILER ZONE
+        </span>
+      </div>
+
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
         {POSTS.map((p) => (
           <button
             key={p.id}
             type="button"
             onClick={() => setActive(p)}
-            className="text-left p-5 rounded-2xl bg-card border border-border hover:border-primary/60 hover:-translate-y-0.5 transition-all cursor-pointer"
+            className="group text-left rounded-3xl bg-gradient-to-br from-card to-card/60 border border-border hover:border-primary/60 hover:shadow-xl hover:shadow-primary/10 hover:-translate-y-1 transition-all duration-300 cursor-pointer overflow-hidden"
           >
-            <span className="text-xs px-2 py-1 rounded-full bg-destructive/20 text-destructive font-bold">
-              {p.tag}
-            </span>
-            <h2 className="text-lg font-bold mt-3 text-foreground">{p.title}</h2>
-            <p className="text-sm text-foreground/70 mt-2 line-clamp-3">{p.excerpt}</p>
-            <div className="mt-4 text-xs text-primary font-bold">อ่านต่อ →</div>
+            <div className="h-32 bg-gradient-to-br from-primary/30 via-accent/20 to-destructive/20 relative flex items-center justify-center">
+              <span className="text-5xl opacity-60 group-hover:scale-110 transition-transform">
+                {p.tag === "ทฤษฎี" ? "🧠" : p.tag === "วิเคราะห์" ? "🔬" : "💥"}
+              </span>
+              <span className="absolute top-3 left-3 text-[10px] px-2.5 py-1 rounded-full bg-background/80 backdrop-blur text-destructive font-bold border border-destructive/40">
+                {p.tag}
+              </span>
+            </div>
+            <div className="p-5">
+              <h2 className="text-base font-bold text-foreground leading-snug group-hover:text-primary transition-colors line-clamp-2">
+                {p.title}
+              </h2>
+              <p className="text-sm text-foreground/65 mt-2 line-clamp-3 leading-relaxed">{p.excerpt}</p>
+              <div className="mt-4 text-xs text-primary font-bold flex items-center gap-1 group-hover:gap-2 transition-all">
+                อ่านสปอยล์เต็ม <span>→</span>
+              </div>
+            </div>
           </button>
         ))}
       </div>

@@ -13,6 +13,7 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Navbar } from "../components/Navbar";
 import { KufChat } from "../components/KufChat";
+import pastelBg from "../assets/pastel-bg.png.asset.json";
 
 function NotFoundComponent() {
   return (
@@ -118,7 +119,10 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="min-h-screen flex flex-col">
+      <div
+        className="min-h-screen flex flex-col pastel-bg"
+        style={{ ["--pastel-bg-url" as string]: `url(${pastelBg.url})` }}
+      >
         <Navbar />
         <main className="flex-1">
           <Outlet />

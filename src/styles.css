@@ -95,18 +95,29 @@
   }
 }
 
-@keyframes kuf-wave {
-  0%, 100% { transform: rotate(-6deg); }
-  50% { transform: rotate(8deg); }
+/* Hand wave: tilt only the upper-right corner side-to-side to mimic a waving hand */
+@keyframes kuf-wave-hand {
+  0%, 100% { transform: rotate(-4deg); }
+  50% { transform: rotate(6deg); }
 }
-@keyframes kuf-bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
+@keyframes kuf-blink-lid {
+  0%, 88%, 100% { transform: scaleY(0); opacity: 0; }
+  92%, 96% { transform: scaleY(1); opacity: 0.9; }
 }
-@keyframes kuf-blink {
-  0%, 92%, 100% { opacity: 0; }
-  94%, 98% { opacity: 1; }
+@keyframes kuf-mouth {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.4); }
 }
-.kuf-wave { transform-origin: 60% 80%; animation: kuf-wave 1.6s ease-in-out infinite; }
-.kuf-bounce { animation: kuf-bounce 3s ease-in-out infinite; }
-.kuf-blink { animation: kuf-blink 4s ease-in-out infinite; }
+.kuf-wave-hand { transform-origin: 70% 90%; animation: kuf-wave-hand 1.4s ease-in-out infinite; }
+.kuf-blink-lid { transform-origin: center; animation: kuf-blink-lid 3.6s ease-in-out infinite; }
+.kuf-mouth { animation: kuf-mouth 2.4s ease-in-out infinite; }
+
+/* Pastel sky background */
+.pastel-bg {
+  background-image: var(--pastel-bg-url);
+  background-size: cover;
+  background-position: top center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+.dark .pastel-bg { background-image: none; }
