@@ -61,7 +61,15 @@ export function AnimeCard({ anime }: { anime: Anime }) {
             className="bg-card text-card-foreground rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-border"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="grid sm:grid-cols-[200px_1fr] gap-4 p-5">
+          <button
+            type="button"
+            onClick={() => setOpen(false)}
+            aria-label="ปิด"
+            className="absolute top-3 right-3 z-10 w-9 h-9 rounded-full bg-background/90 border border-border text-foreground/70 hover:text-foreground hover:bg-background flex items-center justify-center text-lg shadow"
+          >
+            ✕
+          </button>
+          <div className="relative grid sm:grid-cols-[200px_1fr] gap-4 p-5">
               <img
                 src={anime.images.jpg.large_image_url}
                 alt={anime.title}
