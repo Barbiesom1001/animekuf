@@ -17,6 +17,7 @@ interface Post {
   excerpt: string;
   tag: string;
   content: string;
+  image: string;
 }
 
 const POSTS: Post[] = [
@@ -27,6 +28,7 @@ const POSTS: Post[] = [
     tag: "ทฤษฎี",
     content:
       "หลังเอเรนได้พลังไททันบรรพชนและเห็นความทรงจำตลอดเส้นเวลา เขามองเห็นว่าโลกภายนอกพร้อมจะกวาดล้างชาวเอลเดียให้สิ้นซาก ทางเลือกของเขาคือ 'รัมเบิล' ปลดปล่อยไททันยักษ์เหยียบโลก 80% เพื่อทำให้เพื่อนของเขากลายเป็นวีรบุรุษที่หยุดเขาได้\n\nจุดสำคัญที่หลายคนมองข้ามคือ — เอเรนรู้มาตลอดว่า 'มิกาสะ' จะเป็นคนปลิดชีพเขา เพราะเฉพาะคนที่รักเขาสุดหัวใจเท่านั้นที่จะทำลายพลังยมีร์ที่ผูกอยู่กับความเจ็บปวด 2,000 ปีของยมีร์ ฟริตซ์ได้ ตอนจบจึงไม่ใช่โศกนาฏกรรม แต่คือ 'พิธีปลดปล่อย' ที่เอเรนวางแผนไว้ตั้งแต่ต้นคัฟ",
+    image: "https://cdn.myanimelist.net/images/anime/10/47347l.jpg",
   },
   {
     id: 2,
@@ -35,6 +37,7 @@ const POSTS: Post[] = [
     tag: "วิเคราะห์",
     content:
       "ยุคเฮอัน — ยอริอิจิ ทสึกิคุนิ คือมนุษย์คนเดียวที่ใช้ 'ลมหายใจพระอาทิตย์' ดั้งเดิม เขาเกือบฆ่ามุซันสำเร็จในการเจอกันครั้งแรก แต่ร่างของมุซันแยกออกเป็น 1,800 ชิ้นเพื่อหนีตาย\n\nลมหายใจอื่นทั้งหมด (น้ำ ไฟ สายฟ้า ลม หิน) คือ 'เวอร์ชันที่อ่อนลง' ของลมหายใจพระอาทิตย์ เพราะไม่มีใครเลียนแบบยอริอิจิได้\n\nส่วนเนซึโกะ — เธอเอาชนะแสงอาทิตย์ได้เพราะมุซันฉีดเลือดให้เธอในปริมาณที่ทำให้ 'วิวัฒนาการ' ไปอีกขั้น เป้าหมายของมุซันมาตลอด คือสร้างอสูรที่กินแดดได้ ดังนั้นการล่าเนซึโกะของเขาในเรื่อง คือการพยายามดูดกลืนผลงานที่ตัวเองทำพลาดให้เป็นของตัวเองคัฟ",
+    image: "https://cdn.myanimelist.net/images/anime/1286/99889l.jpg",
   },
   {
     id: 3,
@@ -43,6 +46,7 @@ const POSTS: Post[] = [
     tag: "สปอยล์ยับ",
     content:
       "โกโจ ซาโตรุ มีทั้ง 'Six Eyes' (ดวงตาหกแฉก) และเทคนิคสายเลือด 'Limitless' พร้อมกัน ซึ่งเกิดขึ้นครั้งแรกในรอบ 400 ปี Six Eyes ทำให้เขามองเห็นพลังคำสาประดับโมเลกุล จึงใช้ Limitless แบบประหยัดพลังได้\n\nในศึกชินจูกุ ซุคุนะที่สิงร่างเมงุมิ ใช้ Domain Expansion 'Malevolent Shrine' ที่ไม่ต้องสร้างกำแพง — ตัดทุกอย่างในรัศมี 200 เมตรอัตโนมัติ ขณะที่ Domain ของโกโจ 'Unlimited Void' ยัดข้อมูลอนันต์เข้าสมองคู่ต่อสู้\n\nจุดแพ้ของโกโจคือ — เขาประมาท 'เทคนิคสายเลือดสิบเงา' ของเมงุมิที่ซุคุนะปลดล็อกได้สมบูรณ์ ทำให้โดน 'มะฮึรากะ' โจมตี และครั้งที่สองที่ใช้ไม่ได้ผล สุดท้ายโกโจถูกตัดครึ่งในสภาพยิ้มคัฟ",
+    image: "https://cdn.myanimelist.net/images/anime/1171/109222l.jpg",
   },
   {
     id: 4,
@@ -51,6 +55,7 @@ const POSTS: Post[] = [
     tag: "วิเคราะห์",
     content:
       "ฟรีเร็น เป็นเอลฟ์อายุพันกว่าปี สำหรับเธอ 10 ปีของการผจญภัยกับฮิมเมลคือแค่ 'หนึ่งฤดูใบไม้ผลิ' เธอไม่ได้พยายามจดจำเพื่อนมนุษย์ เพราะรู้ว่าพวกเขาจะตายเร็ว\n\nแต่หลังฮิมเมลตาย ฟรีเร็นเริ่มออกเดินทางอีกครั้งเพื่อ 'ทำความเข้าใจมนุษย์' — สิ่งที่เธอไม่เคยสนใจในตอนที่ฮิมเมลยังอยู่ ทุกตอนคือบทเรียนเล็กๆ ที่ฮิมเมลเคยพยายามสอน แต่เธอเพิ่งเก็ตหลังเขาจากไป\n\nธีมแท้จริงของเรื่องคือ — 'ความเสียดายไม่ใช่ความเจ็บ แต่คือแรงผลักให้เราเข้าใจคนที่จากไป' ตอนจบที่ฟรีเร็นยอมรับว่า 'อยากเจอฮิมเมลอีกครั้ง' คือจุดที่เธอกลายเป็นมนุษย์มากกว่าเอลฟ์คัฟ",
+    image: "https://cdn.myanimelist.net/images/anime/1015/138006l.jpg",
   },
 ];
 
@@ -109,10 +114,14 @@ function BasementPage() {
             onClick={() => setActive(p)}
             className="group text-left rounded-3xl bg-gradient-to-br from-card to-card/60 border border-border hover:border-primary/60 hover:shadow-xl hover:shadow-primary/10 hover:-translate-y-1 transition-all duration-300 cursor-pointer overflow-hidden"
           >
-            <div className="h-32 bg-gradient-to-br from-primary/30 via-accent/20 to-destructive/20 relative flex items-center justify-center">
-              <span className="text-5xl opacity-60 group-hover:scale-110 transition-transform">
-                {p.tag === "ทฤษฎี" ? "🧠" : p.tag === "วิเคราะห์" ? "🔬" : "💥"}
-              </span>
+            <div className="h-44 relative overflow-hidden bg-muted">
+              <img
+                src={p.image}
+                alt={p.title}
+                loading="lazy"
+                className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-card via-card/40 to-transparent" />
               <span className="absolute top-3 left-3 text-[10px] px-2.5 py-1 rounded-full bg-background/80 backdrop-blur text-destructive font-bold border border-destructive/40">
                 {p.tag}
               </span>
@@ -136,26 +145,30 @@ function BasementPage() {
           onClick={() => setActive(null)}
         >
           <div
-            className="bg-card border border-border rounded-3xl max-w-2xl w-full max-h-[85vh] overflow-y-auto p-6"
+            className="relative bg-card border border-border rounded-3xl max-w-2xl w-full max-h-[85vh] overflow-y-auto"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="flex items-start gap-3">
-              <span className="text-xs px-2 py-1 rounded-full bg-destructive/20 text-destructive font-bold">
+            <button
+              type="button"
+              onClick={() => setActive(null)}
+              aria-label="ปิด"
+              className="absolute top-3 right-3 z-10 w-9 h-9 rounded-full bg-background/90 border border-border text-foreground/70 hover:text-foreground hover:bg-background flex items-center justify-center text-lg shadow"
+            >
+              ✕
+            </button>
+            <div className="h-56 relative overflow-hidden rounded-t-3xl bg-muted">
+              <img src={active.image} alt={active.title} className="absolute inset-0 w-full h-full object-cover" />
+              <div className="absolute inset-0 bg-gradient-to-t from-card via-card/60 to-transparent" />
+              <span className="absolute bottom-3 left-4 text-xs px-2 py-1 rounded-full bg-destructive/30 text-destructive font-bold border border-destructive/40 backdrop-blur">
                 {active.tag}
               </span>
-              <button
-                type="button"
-                onClick={() => setActive(null)}
-                className="ml-auto text-foreground/60 hover:text-foreground text-xl leading-none"
-                aria-label="ปิด"
-              >
-                ✕
-              </button>
             </div>
-            <h2 className="text-2xl font-bold mt-3 text-foreground">{active.title}</h2>
-            <p className="mt-4 text-foreground/85 leading-relaxed whitespace-pre-wrap">
-              {active.content}
-            </p>
+            <div className="p-6">
+              <h2 className="text-2xl font-bold text-foreground">{active.title}</h2>
+              <p className="mt-4 text-foreground/85 leading-relaxed whitespace-pre-wrap">
+                {active.content}
+              </p>
+            </div>
           </div>
         </div>
       )}
