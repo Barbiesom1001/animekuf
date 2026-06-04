@@ -1,29 +1,102 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
+import { MascotKuf } from "@/components/MascotKuf";
+import { AnimeCard } from "@/components/AnimeCard";
+import { GENRES, getByGenre, getTopAnime, type Anime } from "@/lib/jikan";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Your App" },
-      { name: "description", content: "Replace this with a one-sentence description of your app." },
-      { property: "og:title", content: "Your App" },
-      { property: "og:description", content: "Replace this with a one-sentence description of your app." },
+      { title: "AnimeKuf — ศูนย์รวมอนิเมะกับน้องคัฟ" },
+      { name: "description", content: "แพลตฟอร์มแนะนำอนิเมะภาษาไทย โดยน้องคัฟ พร้อมเรื่องย่อแปลไทยอัตโนมัติ" },
+      { property: "og:title", content: "AnimeKuf — ศูนย์รวมอนิเมะกับน้องคัฟ" },
+      { property: "og:description", content: "ค้นหา แนะนำ และเช็คช่องทางดูอนิเมะถูกลิขสิทธิ์ในไทย" },
     ],
   }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
+  const [genre, setGenre] = useState<number | null>(null);
+  const [list, setList] = useState<Anime[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    let alive = true;
+    setLoading(true);
+    (genre == null ? getTopAnime() : getByGenre(genre))
+      .then((d) => alive && setList(d))
+      .catch(() => alive && setList([]))
+      .finally(() => alive && setLoading(false));
+    return () => { alive = false; };
+  }, [genre]);
+
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
+    <div className="max-w-7xl mx-auto px-4 py-8">
+      <section className="rounded-3xl bg-gradient-to-br from-kuf-pink via-kuf-cream to-kuf-sky p-6 sm:p-10 border border-border shadow-sm">
+        <div className="flex flex-col sm:flex-row items-center gap-6">
+          <MascotKuf size={140} />
+          <div className="flex-1 text-center sm:text-left">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold leading-snug text-foreground">
+              โฮ่ยยย! ยินดีต้อนรับสู่ <span className="text-primary">AnimeKuf</span>!
+              น้องคัฟมาแล้วคัฟป๊มมม
+            </h1>
+            <p className="mt-3 text-base text-foreground/80">
+              วันนี้คุณอยากหาอนิเมะแนวไหน หรืออยากให้น้องคัฟช่วยแนะนำเรื่องอะไร บอกมาได้เลยนะคัฟ!
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section className="mt-8">
+        <h2 className="text-lg font-bold mb-3 text-foreground">เลือกแนวที่ชอบ</h2>
+        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-8 gap-3">
+          <button
+            onClick={() => setGenre(null)}
+            className={`p-3 rounded-2xl border text-center transition-all ${
+              genre == null
+                ? "bg-primary text-primary-foreground border-primary shadow"
+                : "bg-card text-foreground border-border hover:-translate-y-0.5"
+            }`}
+          >
+            <div className="text-xl">⭐</div>
+            <div className="text-xs font-bold mt-1">ยอดนิยม</div>
+          </button>
+          {GENRES.map((g) => (
+            <button
+              key={g.id}
+              onClick={() => setGenre(g.id)}
+              className={`p-3 rounded-2xl border text-center transition-all ${
+                genre === g.id
+                  ? "bg-primary text-primary-foreground border-primary shadow"
+                  : "bg-card text-foreground border-border hover:-translate-y-0.5"
+              }`}
+            >
+              <div className="text-xl">{g.emoji}</div>
+              <div className="text-xs font-bold mt-1">{g.name}</div>
+            </button>
+          ))}
+        </div>
+      </section>
+
+      <section className="mt-8">
+        <h2 className="text-lg font-bold mb-3 text-foreground">
+          {genre == null ? "🔥 อนิเมะยอดนิยมตลอดกาล" : "การ์ดประจำแนว"}
+        </h2>
+        {loading ? (
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+            {Array.from({ length: 12 }).map((_, i) => (
+              <div key={i} className="aspect-[2/3] bg-muted rounded-2xl animate-pulse" />
+            ))}
+          </div>
+        ) : (
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+            {list.map((a) => (
+              <AnimeCard key={a.mal_id} anime={a} />
+            ))}
+          </div>
+        )}
+      </section>
     </div>
   );
 }
