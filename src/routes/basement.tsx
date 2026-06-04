@@ -114,10 +114,14 @@ function BasementPage() {
             onClick={() => setActive(p)}
             className="group text-left rounded-3xl bg-gradient-to-br from-card to-card/60 border border-border hover:border-primary/60 hover:shadow-xl hover:shadow-primary/10 hover:-translate-y-1 transition-all duration-300 cursor-pointer overflow-hidden"
           >
-            <div className="h-32 bg-gradient-to-br from-primary/30 via-accent/20 to-destructive/20 relative flex items-center justify-center">
-              <span className="text-5xl opacity-60 group-hover:scale-110 transition-transform">
-                {p.tag === "ทฤษฎี" ? "🧠" : p.tag === "วิเคราะห์" ? "🔬" : "💥"}
-              </span>
+            <div className="h-44 relative overflow-hidden bg-muted">
+              <img
+                src={p.image}
+                alt={p.title}
+                loading="lazy"
+                className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-card via-card/40 to-transparent" />
               <span className="absolute top-3 left-3 text-[10px] px-2.5 py-1 rounded-full bg-background/80 backdrop-blur text-destructive font-bold border border-destructive/40">
                 {p.tag}
               </span>
