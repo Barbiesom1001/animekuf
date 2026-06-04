@@ -17,6 +17,7 @@ interface Post {
   excerpt: string;
   tag: string;
   content: string;
+  image: string;
 }
 
 const POSTS: Post[] = [
