@@ -86,6 +86,7 @@ export async function searchAnime(q: string): Promise<Anime[]> {
 
 export const GENRES = [
   { id: 1, name: "แอคชั่น", emoji: "⚔️" },
+  { id: 2, name: "ผจญภัย", emoji: "🗺️" },
   { id: 62, name: "ต่างโลก", emoji: "🌌" },
   { id: 4, name: "ตลก", emoji: "😆" },
   { id: 30, name: "กีฬา", emoji: "⚽" },
@@ -93,6 +94,7 @@ export const GENRES = [
   { id: 10, name: "แฟนตาซี", emoji: "🪄" },
   { id: 22, name: "โรแมนซ์", emoji: "💖" },
   { id: 24, name: "ไซไฟ", emoji: "🚀" },
+  { id: 31, name: "ฮันเตอร์", emoji: "🏹" },
 ] as const;
 
 export function statusToThai(s?: string | null): string {
