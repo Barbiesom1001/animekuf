@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { MascotKuf } from "./MascotKuf";
-import { searchAnime } from "@/lib/jikan";
+import { searchAnime, getByGenre, GENRES } from "@/lib/jikan";
 import { translateToThai } from "@/lib/translate";
 
 interface Msg { role: "user" | "kuf"; text: string }
@@ -15,7 +15,6 @@ function kufify(text: string): string {
     .replace(/กำลังตรวจสอบ/g, "")
     .trim();
   if (!t) t = "น้องคัฟอยู่ตรงนี้";
-  // ensure ends with คัฟ
   if (!/คัฟ[\s!?\.]*$/.test(t)) {
     t = t.replace(/[\.!?。]*$/, "") + "คัฟ";
   }
@@ -23,7 +22,26 @@ function kufify(text: string): string {
 }
 
 const GREETING =
-  "โฮ่ยยย! สวัสดีคัฟ น้องคัฟเองคัฟ! อยากให้ช่วยหาอนิเมะเรื่องไหน หรืออยากให้แนะนำแนวอะไรดี พิมพ์ชื่อเรื่องหรือแนวที่ชอบมาได้เลยคัฟ!";
+  "สวัสดีคัฟ! พิมพ์ชื่อเรื่อง หรือบอกแนวที่ชอบ (เช่น แอคชั่น ฮันเตอร์ โรแมนซ์) มาได้เลยคัฟ";
+
+// Lightweight intent detection — answer only what's asked.
+function detectIntent(qRaw: string): { kind: "greet" | "thanks" | "genre" | "search"; payload?: string | number } {
+  const q = qRaw.trim().toLowerCase();
+  if (!q) return { kind: "greet" };
+  if (/^(สวัสดี|หวัดดี|ดีจ้า|hi|hello|hey|ฮัลโหล)/.test(q)) return { kind: "greet" };
+  if (/(ขอบคุณ|ขอบใจ|thanks|thank you)/.test(q)) return { kind: "thanks" };
+
+  // genre intent: "แนะนำ <แนว>" or "อยากดูแนว <x>" or just a bare genre word
+  for (const g of GENRES) {
+    if (q.includes(g.name.toLowerCase())) return { kind: "genre", payload: g.id };
+  }
+  // Hunter alias even if not in GENRES list
+  if (/(ฮันเตอร์|hunter)/.test(q)) {
+    const hunter = GENRES.find((g) => g.name === "ฮันเตอร์");
+    if (hunter) return { kind: "genre", payload: hunter.id };
+  }
+  return { kind: "search", payload: qRaw };
+}
 
 export function KufChat() {
   const [open, setOpen] = useState(false);
@@ -56,24 +74,42 @@ export function KufChat() {
     setMsgs((m) => [...m, { role: "user", text: q }]);
     setBusy(true);
     try {
+      const intent = detectIntent(q);
+
+      if (intent.kind === "greet") {
+        setMsgs((m) => [...m, { role: "kuf", text: kufify("สวัสดีคัฟ อยากให้แนะนำเรื่องอะไรดี") }]);
+        return;
+      }
+      if (intent.kind === "thanks") {
+        setMsgs((m) => [...m, { role: "kuf", text: kufify("ยินดีคัฟ") }]);
+        return;
+      }
+      if (intent.kind === "genre") {
+        const list = await getByGenre(intent.payload as number);
+        const top = list.slice(0, 3);
+        if (top.length === 0) {
+          setMsgs((m) => [...m, { role: "kuf", text: kufify("ยังไม่เจอเรื่องในแนวนี้คัฟ") }]);
+          return;
+        }
+        const lines = top.map((a) => `• ${a.title} (⭐${a.score ?? "-"})`);
+        setMsgs((m) => [...m, { role: "kuf", text: kufify(`แนะนำ 3 เรื่องคัฟ:\n${lines.join("\n")}`) }]);
+        return;
+      }
+      // search
       const results = await searchAnime(q);
       if (results.length === 0) {
-        setMsgs((m) => [...m, { role: "kuf", text: kufify(`อืมม น้องคัฟหาเรื่อง "${q}" ไม่เจอเลย ลองพิมพ์ชื่อใหม่ดูนะ`) }]);
-      } else {
-        const top = results.slice(0, 3);
-        const lines = await Promise.all(
-          top.map(async (a) => {
-            const syn = a.synopsis ? (await translateToThai(a.synopsis)).slice(0, 110) + "..." : "";
-            return `• ${a.title} (⭐${a.score ?? "-"}) ${syn}`;
-          })
-        );
-        setMsgs((m) => [
-          ...m,
-          { role: "kuf", text: kufify(`เจอแล้วคัฟ! น้องคัฟแนะนำเรื่องเหล่านี้:\n${lines.join("\n")}`) },
-        ]);
+        setMsgs((m) => [...m, { role: "kuf", text: kufify(`หาเรื่อง "${q}" ไม่เจอคัฟ`) }]);
+        return;
       }
+      const a = results[0];
+      const syn = a.synopsis ? await translateToThai(a.synopsis) : "";
+      const short = syn.length > 220 ? syn.slice(0, 220) + "..." : syn;
+      setMsgs((m) => [
+        ...m,
+        { role: "kuf", text: kufify(`${a.title} (⭐${a.score ?? "-"} • ${a.episodes ?? "?"} ตอน)\n${short || "ยังไม่มีเรื่องย่อ"}`) },
+      ]);
     } catch {
-      setMsgs((m) => [...m, { role: "kuf", text: kufify("เน็ตน้องคัฟกระตุกนิดนึง ลองใหม่อีกทีนะ") }]);
+      setMsgs((m) => [...m, { role: "kuf", text: kufify("เน็ตน้องคัฟกระตุก ลองใหม่อีกทีคัฟ") }]);
     } finally {
       setBusy(false);
     }
@@ -84,9 +120,9 @@ export function KufChat() {
       <button
         aria-label="คุยกับน้องคัฟ"
         onClick={() => setOpen((v) => !v)}
-        className="fixed bottom-5 right-5 z-40 rounded-full bg-card border border-border shadow-lg p-2 hover:scale-105 transition-transform"
+        className="fixed bottom-5 right-5 z-40 hover:scale-105 transition-transform drop-shadow-xl"
       >
-        <MascotKuf size={64} />
+        <MascotKuf size={72} />
       </button>
 
       {open && (
