@@ -35,10 +35,9 @@ function detectIntent(qRaw: string): { kind: "greet" | "thanks" | "genre" | "sea
   for (const g of GENRES) {
     if (q.includes(g.name.toLowerCase())) return { kind: "genre", payload: g.id };
   }
-  // Hunter alias even if not in GENRES list
-  if (/(ฮันเตอร์|hunter)/.test(q)) {
-    const hunter = GENRES.find((g) => g.name === "ฮันเตอร์");
-    if (hunter) return { kind: "genre", payload: hunter.id };
+  // Gate/Dungeon Hunter alias
+  if (/(ฮันเตอร์|hunter|เกต|ดันเจี้ยน|ดันเจียน|gate|dungeon|solo leveling)/.test(q)) {
+    return { kind: "genre", payload: -1 };
   }
   return { kind: "search", payload: qRaw };
 }
