@@ -58,7 +58,7 @@ export function AnimeCard({ anime }: { anime: Anime }) {
           onClick={() => setOpen(false)}
         >
           <div
-            className="bg-card text-card-foreground rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-border"
+            className="relative bg-card text-card-foreground rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-border"
             onClick={(e) => e.stopPropagation()}
           >
           <button
