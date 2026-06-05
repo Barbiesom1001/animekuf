@@ -1,7 +1,19 @@
 import { useEffect, useRef, useState } from "react";
-import { MascotKuf } from "./MascotKuf";
 import { searchAnime, getByGenre, GENRES } from "@/lib/jikan";
 import { translateToThai } from "@/lib/translate";
+import kufHead from "@/assets/kuf-head.png.asset.json";
+
+function KufHead({ size = 72 }: { size?: number }) {
+  return (
+    <img
+      src={kufHead.url}
+      alt="น้องคัฟ"
+      style={{ width: size, height: size }}
+      className="object-contain drop-shadow-md select-none"
+      draggable={false}
+    />
+  );
+}
 
 interface Msg { role: "user" | "kuf"; text: string }
 
@@ -121,13 +133,13 @@ export function KufChat() {
         onClick={() => setOpen((v) => !v)}
         className="fixed bottom-5 right-5 z-40 hover:scale-105 transition-transform drop-shadow-xl"
       >
-        <MascotKuf size={72} />
+        <KufHead size={72} />
       </button>
 
       {open && (
         <div className="fixed bottom-24 right-5 z-40 w-[min(360px,calc(100vw-2rem))] h-[480px] flex flex-col bg-card border border-border rounded-3xl shadow-2xl overflow-hidden">
           <div className="px-4 py-3 bg-kuf-pink/60 border-b border-border flex items-center gap-2">
-            <MascotKuf size={36} />
+            <KufHead size={36} />
             <div>
               <div className="text-sm font-bold text-foreground">น้องคัฟ</div>
               <div className="text-[10px] text-foreground/70">ออนไลน์ พร้อมป้ายยาคัฟ</div>
