@@ -1,5 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
+import { searchAnime, type Anime } from "@/lib/jikan";
+import { translateToThai } from "@/lib/translate";
 
 export const Route = createFileRoute("/basement")({
   head: () => ({
