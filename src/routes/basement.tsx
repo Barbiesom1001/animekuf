@@ -65,10 +65,46 @@ function BasementPage() {
   const [agreed, setAgreed] = useState(false);
   const [active, setActive] = useState<Post | null>(null);
 
+  // Anime spoiler search
+  const [query, setQuery] = useState("");
+  const [searching, setSearching] = useState(false);
+  const [results, setResults] = useState<Anime[]>([]);
+  const [picked, setPicked] = useState<Anime | null>(null);
+  const [pickedSyn, setPickedSyn] = useState("");
+
   useEffect(() => {
     document.documentElement.classList.add("dark");
     return () => document.documentElement.classList.remove("dark");
   }, []);
+
+  async function runSearch(e?: React.FormEvent) {
+    e?.preventDefault();
+    if (!query.trim()) return;
+    setSearching(true);
+    setPicked(null);
+    try {
+      const r = await searchAnime(query);
+      setResults(r.slice(0, 8));
+    } catch {
+      setResults([]);
+    } finally {
+      setSearching(false);
+    }
+  }
+
+  async function pickAnime(a: Anime) {
+    setPicked(a);
+    setPickedSyn("");
+    if (a.synopsis) {
+      try {
+        const th = await translateToThai(a.synopsis);
+        setPickedSyn(th);
+      } catch {
+        setPickedSyn(a.synopsis);
+      }
+    }
+  }
+
 
   if (!agreed) {
     return (
@@ -141,11 +177,108 @@ function BasementPage() {
         ))}
       </div>
 
+      {/* Anime spoiler search */}
+      <div className="mt-10 rounded-3xl border border-border bg-card/70 p-5">
+        <h2 className="text-xl font-bold text-foreground flex items-center gap-2">
+          🔎 ค้นหาสปอยล์อนิเมะที่อยากอ่าน
+        </h2>
+        <p className="text-xs text-foreground/60 mt-1">
+          ดึงข้อมูลจาก MyAnimeList (Jikan API) แล้วลิงก์ต่อไปยังแหล่งวิเคราะห์ที่น่าเชื่อถือ — Fandom Wiki, Wikipedia, Reddit
+        </p>
+        <form onSubmit={runSearch} className="mt-4 flex gap-2">
+          <input
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder="พิมพ์ชื่อเรื่อง (ไทย/อังกฤษ) เช่น Frieren, ดาบพิฆาตอสูร"
+            className="flex-1 bg-input rounded-full px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-ring text-foreground"
+          />
+          <button
+            type="submit"
+            disabled={searching}
+            className="px-5 rounded-full bg-primary text-primary-foreground text-sm font-bold disabled:opacity-50"
+          >
+            {searching ? "กำลังหา..." : "ค้นหา"}
+          </button>
+        </form>
+
+        {results.length > 0 && !picked && (
+          <div className="mt-4 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+            {results.map((a) => (
+              <button
+                key={a.mal_id}
+                type="button"
+                onClick={() => pickAnime(a)}
+                className="text-left rounded-2xl overflow-hidden border border-border hover:border-primary/60 bg-background/40 transition"
+              >
+                <div className="aspect-[2/3] bg-muted overflow-hidden">
+                  <img src={a.images.jpg.image_url} alt={a.title} loading="lazy" className="w-full h-full object-cover" />
+                </div>
+                <div className="p-2">
+                  <div className="text-xs font-bold text-foreground line-clamp-2">{a.title}</div>
+                  <div className="text-[10px] text-foreground/60 mt-0.5">⭐ {a.score ?? "-"} • {a.episodes ?? "?"} ตอน</div>
+                </div>
+              </button>
+            ))}
+          </div>
+        )}
+
+        {picked && (
+          <div className="mt-4 p-4 rounded-2xl bg-background/40 border border-border">
+            <div className="flex gap-4">
+              <img src={picked.images.jpg.image_url} alt={picked.title} className="w-24 sm:w-32 rounded-xl object-cover" />
+              <div className="flex-1 min-w-0">
+                <div className="flex items-start justify-between gap-2">
+                  <h3 className="text-lg font-bold text-foreground">{picked.title}</h3>
+                  <button
+                    type="button"
+                    onClick={() => setPicked(null)}
+                    className="text-foreground/60 hover:text-foreground text-sm"
+                    aria-label="ปิด"
+                  >✕</button>
+                </div>
+                {picked.title_english && (
+                  <div className="text-xs text-foreground/60">{picked.title_english}</div>
+                )}
+                <div className="text-xs text-foreground/70 mt-1">
+                  ⭐ {picked.score ?? "-"} • {picked.episodes ?? "?"} ตอน
+                </div>
+                <p className="text-sm text-foreground/85 mt-3 leading-relaxed whitespace-pre-wrap">
+                  {pickedSyn || (picked.synopsis ? "น้องคัฟกำลังแปล..." : "ไม่มีเรื่องย่อ")}
+                </p>
+              </div>
+            </div>
+            <div className="mt-4">
+              <div className="text-xs font-bold text-foreground/80 mb-2">📚 แหล่งสปอยล์/วิเคราะห์ที่น่าเชื่อถือ</div>
+              <div className="flex flex-wrap gap-2">
+                {[
+                  { label: "MyAnimeList", url: `https://myanimelist.net/anime/${picked.mal_id}` },
+                  { label: "Fandom Wiki", url: `https://www.google.com/search?q=${encodeURIComponent((picked.title_english || picked.title) + " fandom wiki spoilers")}` },
+                  { label: "Wikipedia", url: `https://en.wikipedia.org/wiki/Special:Search?search=${encodeURIComponent(picked.title_english || picked.title)}` },
+                  { label: "Reddit r/anime", url: `https://www.reddit.com/r/anime/search/?q=${encodeURIComponent((picked.title_english || picked.title) + " ending explained")}&restrict_sr=1` },
+                  { label: "AniList", url: `https://anilist.co/search/anime?search=${encodeURIComponent(picked.title_english || picked.title)}` },
+                ].map((s) => (
+                  <a
+                    key={s.label}
+                    href={s.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="px-3 py-1.5 rounded-full text-xs font-semibold bg-primary/80 text-primary-foreground hover:bg-primary"
+                  >
+                    🔗 {s.label}
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+
       {active && (
         <div
           className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4"
           onClick={() => setActive(null)}
         >
+
           <div
             className="relative bg-card border border-border rounded-3xl max-w-2xl w-full max-h-[85vh] overflow-y-auto"
             onClick={(e) => e.stopPropagation()}
