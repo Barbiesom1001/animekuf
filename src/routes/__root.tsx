@@ -4,6 +4,7 @@ import {
   Link,
   createRootRouteWithContext,
   useRouter,
+  useRouterState,
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
@@ -13,6 +14,9 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Navbar } from "../components/Navbar";
 import { KufChat } from "../components/KufChat";
+import pastelBg from "../assets/pastel-bg.png.asset.json";
+
+const LINE_OA_URL = "https://line.me/R/ti/p/@677gdesw";
 
 function NotFoundComponent() {
   return (
@@ -122,15 +126,34 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const path = useRouterState({ select: (s) => s.location.pathname });
+  const showBg = !path.startsWith("/basement");
 
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="min-h-screen flex flex-col">
+      {showBg && (
+        <div
+          aria-hidden
+          className="fixed inset-0 -z-10 pointer-events-none bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: `url(${pastelBg.url})` }}
+        />
+      )}
+      <div className="min-h-screen flex flex-col relative">
         <Navbar />
         <main className="flex-1">
           <Outlet />
         </main>
         <KufChat />
+        <a
+          href={LINE_OA_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="เพิ่มเพื่อน LINE น้องคัฟ"
+          className="fixed bottom-5 left-5 z-40 flex items-center gap-2 px-4 py-2.5 rounded-full bg-[#06C755] text-white font-bold text-sm shadow-xl hover:scale-105 transition-transform"
+        >
+          <span className="text-base">💬</span>
+          <span>LINE น้องคัฟ</span>
+        </a>
       </div>
     </QueryClientProvider>
   );
