@@ -1,5 +1,5 @@
 import { Link, useRouterState } from "@tanstack/react-router";
-import { MascotKuf } from "./MascotKuf";
+import kufNavbar from "@/assets/kuf-navbar.png.asset.json";
 
 const tabs = [
   { to: "/", label: "หน้าแนะนำ", emoji: "✨" },
@@ -13,7 +13,12 @@ export function Navbar() {
     <header className="sticky top-0 z-30 backdrop-blur-md bg-background/70 border-b border-border">
       <nav className="max-w-7xl mx-auto px-4 py-3 flex items-center gap-4">
         <Link to="/" className="flex items-center gap-2 group">
-          <MascotKuf size={44} />
+          <img
+            src={kufNavbar.url}
+            alt="น้องคัฟ"
+            className="w-12 h-12 object-contain object-top drop-shadow-sm"
+            style={{ objectPosition: "center top" }}
+          />
           <span className="text-2xl font-bold tracking-tight text-foreground">
             Anime<span className="text-primary">Kuf</span>
           </span>

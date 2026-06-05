@@ -1,8 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { MascotKuf } from "@/components/MascotKuf";
 import { AnimeCard } from "@/components/AnimeCard";
 import { GENRES, getByGenre, getTopAnime, type Anime } from "@/lib/jikan";
+import kufHero from "@/assets/kuf-hero.png.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -35,7 +35,7 @@ function Index() {
     <div className="max-w-7xl mx-auto px-4 py-8">
       <section className="rounded-3xl bg-card/55 backdrop-blur-md p-6 sm:p-10 border border-white/40 shadow-lg">
         <div className="flex flex-col sm:flex-row items-center gap-6">
-          <MascotKuf size={140} />
+          <img src={kufHero.url} alt="น้องคัฟ" className="w-40 sm:w-52 h-auto object-contain drop-shadow-lg" />
           <div className="flex-1 text-center sm:text-left">
             <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold leading-snug text-foreground">
               โฮ่ยยย! ยินดีต้อนรับสู่ <span className="text-primary">AnimeKuf</span>!
