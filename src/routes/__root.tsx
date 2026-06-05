@@ -134,11 +134,11 @@ function RootComponent() {
       {showBg && (
         <div
           aria-hidden
-          className="fixed inset-0 -z-10 pointer-events-none bg-cover bg-center bg-no-repeat"
+          className="fixed inset-0 z-0 pointer-events-none bg-cover bg-center bg-no-repeat"
           style={{ backgroundImage: `url(${pastelBg.url})` }}
         />
       )}
-      <div className="min-h-screen flex flex-col relative">
+      <div className="min-h-screen flex flex-col relative z-10">
         <Navbar />
         <main className="flex-1">
           <Outlet />

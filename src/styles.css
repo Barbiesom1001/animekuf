@@ -93,6 +93,8 @@
     color: var(--color-foreground);
     font-family: var(--font-display);
   }
+  html:not(.dark) body { background-color: transparent; }
+  html:not(.dark) { background-color: var(--color-background); }
 }
 
 /* Hand wave: tilt only the upper-right corner side-to-side to mimic a waving hand */
