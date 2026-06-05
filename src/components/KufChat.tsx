@@ -6,7 +6,7 @@ import kufHead from "@/assets/kuf-head.png.asset.json";
 function KufHead({ size = 72 }: { size?: number }) {
   return (
     <img
-      src={kufHead.url}
+      src="/kuf-head.png"
       alt="น้องคัฟ"
       style={{ width: size, height: size }}
       className="object-contain drop-shadow-md select-none"
