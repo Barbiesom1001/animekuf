@@ -1,0 +1,4 @@
+const tsrStartManifest = () => ({ routes: { __root__: { filePath: "C:/Users/HP/Downloads/AnimeKuf/animekuf/src/routes/__root.tsx", children: ["/", "/basement", "/schedule"], preloads: ["/assets/index-DqI9qcQ6.js"], scripts: [{ attrs: { type: "module", async: true, src: "/assets/index-DqI9qcQ6.js" } }] }, "/": { filePath: "C:/Users/HP/Downloads/AnimeKuf/animekuf/src/routes/index.tsx", children: void 0, preloads: ["/assets/index-DCiwQB-1.js", "/assets/AnimeCard-9LTeVkJh.js"] }, "/basement": { filePath: "C:/Users/HP/Downloads/AnimeKuf/animekuf/src/routes/basement.tsx", children: void 0, preloads: ["/assets/basement-BGSb9SIG.js"] }, "/schedule": { filePath: "C:/Users/HP/Downloads/AnimeKuf/animekuf/src/routes/schedule.tsx", children: void 0, preloads: ["/assets/schedule-Df1Vl9G2.js", "/assets/AnimeCard-9LTeVkJh.js"] } } });
+export {
+  tsrStartManifest
+};
